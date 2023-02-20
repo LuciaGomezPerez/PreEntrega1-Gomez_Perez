@@ -1,53 +1,37 @@
-let productos = {
-"Elden ring": {precio: 8599
-},
-"Hogwarts legacy": {precio: 8999
-},
-"Dark souls": {precio: 5699
-},
-"Signalis": {precio: 1060
-},
-"God of war": {precio: 4199
-},
-"RimWorld": {precio: 2100
-},
-"JoJo's Bizarre Adventure: All-Star Battle R": {precio: 3499
-},
-}
+//CATALOGO DE JUEGOS
+let productos = { "elden ring": { precio: 8599 }, "hogwarts legacy": { precio: 8999 }, "dark souls": { precio: 5699 }, "signalis": { precio: 1060 }, "god of war": { precio: 4199 }, "rimworld": { precio: 2100 }, }
+
+//IMPUESTOS
 const calcularIva = a => a * 0.75;
+
+//INPUTS CON CONDICIONALES Y CICLOS
 
 let seleccion = prompt("Hola desea adquirir algún producto? ingrese si o no")
 
-while(seleccion != "si" && seleccion != "no"){
+while (seleccion != "si" && seleccion != "no") {
     alert("Dale no tengo todo el día")
     seleccion = prompt("Desea comprar algo si o no")
 }
-if (seleccion == "si"){
-    alert ("Aqui tiene una lista de productos")
+if (seleccion == "si") {
     console.log(productos)
-    comprar = prompt("Que producto quiere comprar?")
-} else if (seleccion == "no"){
+    alert("Aqui tiene una lista de productos")
+    comprar = prompt("Que producto quiere comprar?").toLowerCase()
+} else if (seleccion == "no") {
     alert("Perfecto, tenga un buen día")
 }
 
-while (comprar !== "Dark souls" && comprar !== "Elden ring" && comprar !== "Signalis" && comprar !== "RimWorld" && comprar !== "God of war" && comprar !== "Hogwarts legacy" ){
-    alert ("Por favor elija un producto")
-    comprar = prompt("Que producto quiere comprar?")
-} 
-if (comprar == "Dark souls" || comprar == "Elden ring" || comprar == "Signalis" || comprar == "RimWorld" || comprar == "God of war" || comprar == "Hogwarts legacy" ) {
-    let cantidad = parseInt(prompt("cuantas unidades quieres?"))
-    let subtotal = cantidad * productos[comprar].precio;
-    let total = subtotal + calcularIva(subtotal);
-    console.log ("Precio unitario: " + productos[comprar].precio + ", Precio total sin IVA: " + subtotal + ", Precio total con IVA: " + total )
-    alert ("gracias vuelva prontos")
+while (comprar !== "dark souls" && comprar !== "elden ring" && comprar !== "signalis" && comprar !== "rimWorld" && comprar !== "god of war" && comprar !== "hogwarts legacy") {
+    alert("Por favor elija un producto")
+    comprar = prompt("Que producto quiere comprar?").toLowerCase()
 }
-
-
-
-
-// for (let index = 0; index < productos.length; index++) {
-//     const element = productos[index];
-//     document.write(element.nombre + " " + element.precio +"<br>")
-//     console.log(index)
-// }
-
+if (comprar == "dark souls" || comprar == "elden ring" || comprar == "signalis" || comprar == "rimWorld" || comprar == "god of war" || comprar == "hogwarts legacy") {
+    let cantidad = parseInt(prompt("Cuantas unidades quieres?"))
+    if (!isNaN(cantidad)) {
+        let subtotal = cantidad * productos[comprar].precio;
+        let total = subtotal + calcularIva(subtotal);
+        console.log("Precio unitario: " + productos[comprar].precio + ", Precio total sin IVA: " + subtotal + ", Precio total con IVA: " + total)
+        alert("Gracias vuelva prontos")
+    } else {
+        console.log("Flaco ingresa un número")
+    }
+}
